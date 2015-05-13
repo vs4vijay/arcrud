@@ -1,0 +1,2 @@
+module Arcrud
+end

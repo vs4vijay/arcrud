@@ -1,0 +1,61 @@
+/*
+Add following routes to your route or state provider if it doesn't add autometically
+
+.state('<%= file_name %>', {
+  url: '/<%= file_name %>',
+  controller: '<%= file_name.capitalize %>Ctrl',
+  templateUrl: 'app/<%= file_name %>/<%= file_name %>.html',
+  resolve: {
+    <%= file_name.capitalize %>List: ['<%= file_name.capitalize %>Service', function(<%= file_name.capitalize %>Service) {
+      return <%= file_name.capitalize %>Service.query();
+    }]
+  }
+})
+
+*/
+
+
+angular.module('app').controller('<%= file_name.capitalize %>Ctrl', ['$scope', '$location', '<%= file_name.capitalize %>List', '<%= file_name.capitalize %>Service', 'toaster', function ($scope, $location, <%= file_name.capitalize %>List, <%= file_name.capitalize %>Service, toaster) {
+
+	$scope.<%= file_name %>List = <%= file_name.capitalize %>List;
+	$scope.<%= file_name %>Model = {};
+
+	$scope.reset<%= file_name.capitalize %> = function(){
+		$scope.<%= file_name %>Model = {};
+	}
+
+	$scope.close<%= file_name.capitalize %>Model = function() {
+		angular.element('#<%= file_name %>Modal').modal('hide');
+	};
+
+	$scope.load<%= file_name.capitalize %>EditForm = function(<%= file_name %>Model, index) {
+		$scope.<%= file_name %>Model = angular.copy(<%= file_name %>Model);
+		$scope.<%= file_name %>Model.index = index;
+		angular.element('#<%= file_name %>Modal').modal('show');
+	};
+
+	$scope.add<%= file_name.capitalize %> = function(<%= file_name %>Model) {
+    <%= file_name.capitalize %>Service.save(<%= file_name %>Model).$promise.then(function(data) {
+			$scope.<%= file_name %>List.unshift(data);
+			$scope.close<%= file_name.capitalize %>Model();
+		}, function(res) {
+			toaster.pop('error', 'Errors', res.data.errors.join(', '));
+		});
+	};
+
+	$scope.update<%= file_name.capitalize %> = function(<%= file_name %>Model) {
+    <%= file_name.capitalize %>Service.update(<%= file_name %>Model).$promise.then(function(data) {
+			$scope.<%= file_name %>List[<%= file_name %>Model.index] = data;
+			$scope.close<%= file_name.capitalize %>Model();
+		}, function(res) {
+			toaster.pop('error', 'Errors', res);
+		});
+	};
+
+	$scope.delete<%= file_name.capitalize %> = function(<%= file_name %>Id, index){
+    <%= file_name.capitalize %>Service.delete({id: <%= file_name %>Id}).$promise.then(function(response) {
+			$scope.<%= file_name %>List.splice(index, 1);
+		});
+	};
+
+}]);

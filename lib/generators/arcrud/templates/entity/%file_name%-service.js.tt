@@ -1,0 +1,16 @@
+/*
+  Make sure you have included ngResource module and its js file.
+*/
+
+angular.module('app').factory ('<%= file_name.capitalize %>Service', ['$resource', function($resource) {
+
+  var <%= file_name.capitalize %>Resource = $resource('/<%= file_name %>/:id', {
+    id: '@id'
+  }, {
+      update: {
+        method: 'PUT'
+      }
+  });
+
+  return <%= file_name.capitalize %>Resource;
+}]);

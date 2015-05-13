@@ -1,0 +1,112 @@
+<div class="container" name="<%= file_name.capitalize %>Form">
+
+    <legend> <%= file_name.capitalize %> </legend>
+
+    <button type="button" class="btn btn-primary" tooltip="New <%= file_name.capitalize %>" style="margin-top: 10px;margin-bottom: 10px;" data-toggle="modal" data-target="#<%= file_name %>Modal" ng-click="reset<%= file_name.capitalize %>()">
+      Add <%= file_name.capitalize %>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="<%= file_name %>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel" ng-hide="<%= file_name %>Model.id">
+              New <%= file_name.capitalize %>
+            </h4>
+            <h4 class="modal-title" id="myModalLabel" ng-show="<%= file_name %>Model.id">
+              {{<%= file_name %>Model.name}}
+            </h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name"> Name </label>
+                  <input type="text" class="form-control" id="name" ng-model="<%= file_name %>Model.name">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="value"> Value </label>
+                  <input type="text" class="form-control" id="value" ng-model="<%= file_name %>Model.value">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="comment"> Comment </label>
+                  <textarea class="form-control" id="comment" ng-model="<%= file_name %>Model.comment"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-success" ng-show="<%= file_name %>Model.id" ng-click="update<%= file_name.capitalize %>(<%= file_name %>Model)"> <b>Save</b> </button>
+            <button class="btn btn-success" ng-hide="<%= file_name %>Model.id" ng-click="add<%= file_name.capitalize %>(<%= file_name %>Model)"> <b>Add</b> </button>
+            <button class="btn btn-default" data-dismiss="modal"><b>Cancel</b></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Comment
+          </th>
+          <th>
+            Action
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="<%= file_name %> in <%= file_name %>List">
+          <td class="col-md-2">
+            <b>{{<%= file_name %>.name}}</b>
+          </td>
+          <td class="col-md-2">
+            {{<%= file_name %>.value}}
+          </td>
+          <td class="col-md-3">
+            {{<%= file_name %>.comment}}
+          </td>
+          <td class="col-md-3">
+            <button type="button" class="btn btn-link" ng-click="load<%= file_name.capitalize %>EditForm(<%= file_name %>, $index)" ng-hide="confirmDeletion">
+              Edit
+            </button>
+            <button type="button" class="btn btn-link pull-right" ng-click="confirmDeletion = true" tooltip="Delete <%= file_name.capitalize %>" ng-hide="confirmDeletion">
+              Delete
+            </button>
+            <div class="row" ng-show="confirmDeletion">
+              <div class="btn text-center col-md-6"><b>Are You Sure?</b></div>
+              <div class="btn btn-group col-md-6 pull-right">
+                <button type="button" class="btn btn-link btn-sm" ng-click="delete<%= file_name.capitalize %>(<%= file_name %>.id, $index)" tooltip="Delete <%= file_name.capitalize %>">
+                  Delete
+                </button>
+                <button type="button" class="btn btn-link btn-sm" ng-click="confirmDeletion = false" tooltip="Cancel">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>

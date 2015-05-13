@@ -1,0 +1,11 @@
+Description:
+    Angular Rails CRUD Operation
+
+Example:
+    rails generate arcrud Car
+
+    This will create:
+        app/assets/javascripts/app/car
+        app/assets/javascripts/app/car/car-ctrl.js
+        app/assets/javascripts/app/car/car-service.js
+        app/assets/javascripts/app/car/car.html
