@@ -1,4 +1,4 @@
-= Arcrud
+# Arcrud
 
 This project rocks and creates Angular Rails CRUD Operations.
 
