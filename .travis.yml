@@ -1,15 +1,19 @@
-language: ruby
-cache: bundler
+# language: ruby
+# cache: bundler
 
-rvm:
-  - ruby
-  - 2.0.0
+# rvm:
+#   - ruby
+#   - 2.0.0
 
-script: 'bundle exec rake'
+# script: 'bundle exec rake'
 
-notifications:
-  email:
-    recipients:
-      - vs4vijay@gmail.com
-    on_failure: change
-    on_success: change
+# notifications:
+#   email:
+#     recipients:
+#       - vs4vijay@gmail.com
+#     on_failure: change
+#     on_success: change
+
+deploy:
+    provider: rubygems
+    api_key: "479b4333a61f41adeb94599877c5ab0"
