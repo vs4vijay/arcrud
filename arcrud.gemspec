@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Vijay Soni"]
   s.email       = ["vs4vijay@gmail.com"]
   s.homepage    = "http://github.com/vs4vijay/arcrud"
-  s.summary     = "Angular Rails CRUD Operation."
-  s.description = "Angular Rails CRUD Operation."
+  s.summary     = "Gem for CRUD Operation on Angular and Rails."
+  s.description = "Angular Rails CRUD Operation Gem."
   s.license     = "WTFPL"
 
   s.files = Dir["{app,config,db,lib}/**/*", "WTFPL-LICENSE", "Rakefile", "README.rdoc"]
