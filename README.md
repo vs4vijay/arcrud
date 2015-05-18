@@ -1,6 +1,6 @@
 # Arcrud
 
-This project rocks and creates Angular Rails CRUD Operations.
+This project rocks and creates Angular Rails CRUD Operations packed in gem `arcrud`.
 
 ## Requirement
   * Rails project
